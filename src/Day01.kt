@@ -1,15 +1,14 @@
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        return input.windowed(2)
+            .count { (x, y) -> x.toInt() < y.toInt() }
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        return input.windowed(3) { (x, y, z) -> x.toInt() + y.toInt() + z.toInt() }
+            .windowed(2)
+            .count { (x, y) -> x < y }
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
 
     val input = readInput("Day01")
     println(part1(input))
